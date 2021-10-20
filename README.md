@@ -8,7 +8,6 @@ Jupyter notebook worksheets to accompany [*Data Science: A first introduction*](
 | [Reading in data locally and from the web](https://ubc-dsci.github.io/introduction-to-datascience/reading.html) | [worksheet 2](worksheet1/worksheet2.ipynb) |
 | [Cleaning and wrangling data](https://ubc-dsci.github.io/introduction-to-datascience/wrangling.html) | [worksheet 3](worksheet1/worksheet3.ipynb) |
 | [Effective data visualization](https://ubc-dsci.github.io/introduction-to-datascience/viz.html) | [worksheet 4](worksheet1/worksheet4.ipynb) |
-
 | [Classification I: training & predicting](https://ubc-dsci.github.io/introduction-to-datascience/classification.html) | [worksheet 6](worksheet1/worksheet6.ipynb) |
 | [Classification II: evaluation & tuning](https://ubc-dsci.github.io/introduction-to-datascience/classification2.html) | [worksheet 7](worksheet1/worksheet7.ipynb) |
 | [Regression I: K-nearest neighbors](https://ubc-dsci.github.io/introduction-to-datascience/regression1.html) | [worksheet 8](worksheet1/worksheet8.ipynb) |
