@@ -14,6 +14,7 @@ Jupyter notebook worksheets to accompany [*Data Science: A first introduction*](
 | [Regression II: linear regression](https://ubc-dsci.github.io/introduction-to-datascience/regression2.html) | [worksheet 9](worksheet1/worksheet9.ipynb) |
 | [Clustering](https://ubc-dsci.github.io/introduction-to-datascience/clustering.html) | [worksheet 10](worksheet1/worksheet10.ipynb) |
 | [Statistical inference](https://ubc-dsci.github.io/introduction-to-datascience/inference.html) | [worksheet 11](worksheet1/worksheet11.ipynb) |
+| [Statistical inference](https://ubc-dsci.github.io/introduction-to-datascience/inference.html) | [worksheet 12](worksheet1/worksheet12.ipynb) |
 | [Collaboration with version control](https://ubc-dsci.github.io/introduction-to-datascience/Getting-started-with-version-control.html) | [worksheet 5](worksheet1/worksheet5.ipynb) |
 
 ### Licence
