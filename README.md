@@ -2,6 +2,8 @@
 
 Jupyter notebook worksheets to accompany [*Data Science: A First Introduction*](https://ubc-dsci.github.io/introduction-to-datascience/) by Tiffany Timbers, Trevor Campbell and Melissa Lee
 
+To use these worksheets, you can download this repository by clicking [here](https://github.com/UBC-DSCI/data-science-a-first-intro-worksheets/archive/refs/heads/main.zip) and follow our computer setup instructions [here](https://ubc-dsci.github.io/introduction-to-datascience/move-to-your-own-machine.html). We also recommend reading our [Combining code and text with Jupyter chapter](https://ubc-dsci.github.io/introduction-to-datascience/getting-started-with-jupyter.html) before starting out.
+
 | Book chapter | Worksheet |
 |--------------|-----------|
 | [R and the tidyverse](https://ubc-dsci.github.io/introduction-to-datascience/intro.html) | [worksheet 1](worksheet_01/worksheet_01.ipynb) |
