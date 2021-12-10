@@ -2,9 +2,15 @@
 
 Jupyter notebook worksheets to accompany [*Data Science: A First Introduction*](https://ubc-dsci.github.io/introduction-to-datascience/) by Tiffany Timbers, Trevor Campbell and Melissa Lee
 
-To use these worksheets, you can download this repository by clicking [here](https://github.com/UBC-DSCI/data-science-a-first-intro-worksheets/archive/refs/heads/main.zip) and follow our computer setup instructions [here](https://ubc-dsci.github.io/introduction-to-datascience/move-to-your-own-machine.html). We also recommend reading our [Combining code and text with Jupyter chapter](https://ubc-dsci.github.io/introduction-to-datascience/getting-started-with-jupyter.html) before starting out.
+To use these worksheets, you can either:
 
-| Book chapter | View worksheet | Launch worksheet on myBinder.org |
+1. Click on a "launch binder" button to open an interactive, but non-peristent, version of the notebook
+
+2. Download this repository by clicking [here](https://github.com/UBC-DSCI/data-science-a-first-intro-worksheets/archive/refs/heads/main.zip) and follow our computer setup instructions [here](https://ubc-dsci.github.io/introduction-to-datascience/move-to-your-own-machine.html). 
+
+Regardless of the method you choose to acces them, we also recommend reading our [Combining code and text with Jupyter chapter](https://ubc-dsci.github.io/introduction-to-datascience/getting-started-with-jupyter.html) before starting out.
+
+| Book chapter | View worksheet on GitHub | Launch worksheet on myBinder.org |
 |--------------|-----------|----|
 | [R and the tidyverse](https://ubc-dsci.github.io/introduction-to-datascience/intro.html) | [worksheet 1](worksheet_01/worksheet_01.ipynb) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/UBC-DSCI/data-science-a-first-intro-worksheets/HEAD?labpath=worksheet_01%2Fworksheet_01.ipynb)  |
 | [Reading in data locally and from the web](https://ubc-dsci.github.io/introduction-to-datascience/reading.html) | [worksheet 2](worksheet_02/worksheet_02.ipynb) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/UBC-DSCI/data-science-a-first-intro-worksheets/HEAD?labpath=worksheet_02%2Fworksheet_02.ipynb) |
@@ -21,3 +27,11 @@ To use these worksheets, you can download this repository by clicking [here](htt
 
 ### Licence
 [Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
+
+### Acknowledgements
+We would like to thank the [BinderHub Federation](https://mybinder.readthedocs.io/en/latest/about/federation.html#the-binderhub-federation) for their kind and generous support of [mybinder.org](https://mybinder.org/). The interactive versions of these notebooks would not be possible without their work and suport.
+
+### References
+Jupyter et al., "Binder 2.0 - Reproducible, Interactive, Sharable
+Environments for Science at Scale." Proceedings of the 17th Python
+in Science Conference. 2018. doi://10.25080/Majora-4af1f417-011
