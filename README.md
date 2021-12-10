@@ -4,9 +4,9 @@ Jupyter notebook worksheets to accompany [*Data Science: A First Introduction*](
 
 To use these worksheets, you can download this repository by clicking [here](https://github.com/UBC-DSCI/data-science-a-first-intro-worksheets/archive/refs/heads/main.zip) and follow our computer setup instructions [here](https://ubc-dsci.github.io/introduction-to-datascience/move-to-your-own-machine.html). We also recommend reading our [Combining code and text with Jupyter chapter](https://ubc-dsci.github.io/introduction-to-datascience/getting-started-with-jupyter.html) before starting out.
 
-| Book chapter | Worksheet |
-|--------------|-----------|
-| [R and the tidyverse](https://ubc-dsci.github.io/introduction-to-datascience/intro.html) | [worksheet 1](worksheet_01/worksheet_01.ipynb) |
+| Book chapter | View worksheet | Launch worksheet on myBinder.org |
+|--------------|-----------|----|
+| [R and the tidyverse](https://ubc-dsci.github.io/introduction-to-datascience/intro.html) | [worksheet 1](worksheet_01/worksheet_01.ipynb) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/UBC-DSCI/data-science-a-first-intro-worksheets/HEAD?labpath=https%3A%2F%2Fgithub.com%2FUBC-DSCI%2Fdata-science-a-first-intro-worksheets%2Fblob%2Fmain%2Fworksheet_01%2Fworksheet_01.ipynb) |
 | [Reading in data locally and from the web](https://ubc-dsci.github.io/introduction-to-datascience/reading.html) | [worksheet 2](worksheet_02/worksheet_02.ipynb) |
 | [Cleaning and wrangling data](https://ubc-dsci.github.io/introduction-to-datascience/wrangling.html) | [worksheet 3](worksheet_03/worksheet_03.ipynb) |
 | [Effective data visualization](https://ubc-dsci.github.io/introduction-to-datascience/viz.html) | [worksheet 4](worksheet_04/worksheet_04.ipynb) |
