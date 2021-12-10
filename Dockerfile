@@ -6,8 +6,8 @@ FROM jupyter/r-notebook:notebook-6.4.3
 LABEL maintainer="Tiffany Timbers <tiffany.timbers@gmail.com>"
 
 # Install R packages on conda-forge
-#RUN conda install --quiet --yes -c conda-forge \
-#  r-cowplot \
+RUN conda install --quiet --yes -c conda-forge \
+  r-cowplot
 #  r-ggally \
 #  r-gridextra \
 #  r-infer \
