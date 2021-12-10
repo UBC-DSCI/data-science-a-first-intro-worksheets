@@ -14,6 +14,5 @@ dependencies:
   - r-testthat \
   - r-tidymodels \
   - r-tidyverse \
-  r-tinytex \
-  unixodbc
-  
+  - r-tinytex \
+  - unixodbc
