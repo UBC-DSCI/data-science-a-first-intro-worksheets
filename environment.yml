@@ -1,18 +1,18 @@
 channels:
   - conda-forge
 dependencies:
-  - r-base=4.1 \
-  - r-cowplot \
-  - r-ggally \
-  - r-gridextra \
-  - r-infer \
-  - r-kknn \
-  - r-rodbc \
-  - r-rpostgres \
-  - r-rsqlite \
-  - r-scales \
-  - r-testthat \
-  - r-tidymodels \
-  - r-tidyverse \
-  - r-tinytex \
+  - r-base=4.1
+  - r-cowplot
+  - r-ggally
+  - r-gridextra
+  - r-infer
+  - r-kknn
+  - r-rodbc
+  - r-rpostgres
+  - r-rsqlite
+  - r-scales
+  - r-testthat
+  - r-tidymodels
+  - r-tidyverse
+  - r-tinytex
   - unixodbc
