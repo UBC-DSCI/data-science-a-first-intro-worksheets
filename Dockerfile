@@ -7,12 +7,12 @@ LABEL maintainer="Tiffany Timbers <tiffany.timbers@gmail.com>"
 
 # Install R packages on conda-forge
 RUN conda install --quiet --yes -c conda-forge \
-  r-cowplot=1.1.* \
-  r-ggally=2.1.* \
-  r-gridextra=2.3 \
-  r-infer=0.5.* \
-  r-kknn=1.3.* \
-  r-rpostgres=1.3.*
+  r-cowplot \
+  r-ggally \
+  r-gridextra \
+  r-infer \
+  r-kknn \
+  r-rpostgres
 
 # we can't use testthat 2.3 because of weird "no testthat_print" function error https://github.com/r-lib/rlang/issues/1112
 # we can't use testthat 3.0.4 (current release) because it doesn't include the fix to make interactive tests error https://github.com/r-lib/testthat/pull/1443
@@ -26,24 +26,19 @@ RUN Rscript -e "devtools::install_github('allisonhorst/palmerpenguins@v0.1.0')"
 # Install ISLR package for the Credit data set
 RUN Rscript -e "install.packages('ISLR', repos='http://cran.us.r-project.org')"
 
-# Install jupyter extensions (nbgitpuller, git, jupytext)
+ARG NB_USER=jovyan
+ARG NB_UID=1000
+ENV USER ${NB_USER}
+ENV NB_UID ${NB_UID}
+ENV HOME /home/${NB_USER}
+
+RUN adduser --disabled-password \
+    --gecos "Default user" \
+    --uid ${NB_UID} \
+    ${NB_USER}
+
+# Make sure the contents of our repo are in ${HOME}
+COPY . ${HOME}
 USER root
-
-RUN pip install git+https://github.com/data-8/nbgitpuller \
-  && jupyter serverextension enable --sys-prefix nbgitpuller \
-  && pip install jupyterlab-git \
-  && pip install jupytext --upgrade \
-  && jupyter labextension install @techrah/text-shortcuts \
-  && jupyter lab build  
-
-RUN useradd -m -s /bin/bash -N -u 9999 jupyter
-
-USER jupyter
-
-COPY rm-merge-shortcut.py /tmp/user-settings/\@jupyterlab/shortcuts-extension/shortcuts.jupyterlab-settings
-
-# Configure jupyter user
-ENV NB_USER=jupyter \
-  NB_UID=9999
-ENV HOME=/home/$NB_USER
-WORKDIR $HOME
+RUN chown -R ${NB_UID} ${HOME}
+USER ${NB_USER}
