@@ -7,12 +7,12 @@ LABEL maintainer="Tiffany Timbers <tiffany.timbers@gmail.com>"
 
 # Install R packages on conda-forge
 RUN conda install --quiet --yes -c conda-forge \
-  r-cowplot
-#  r-ggally \
-#  r-gridextra \
-#  r-infer \
-#  r-kknn \
-#  r-rpostgres
+  r-cowplot \
+  r-ggally \
+  r-gridextra \
+  r-infer \
+  r-kknn \
+  r-rpostgres
 
 # we can't use testthat 2.3 because of weird "no testthat_print" function error https://github.com/r-lib/rlang/issues/1112
 # we can't use testthat 3.0.4 (current release) because it doesn't include the fix to make interactive tests error https://github.com/r-lib/testthat/pull/1443
