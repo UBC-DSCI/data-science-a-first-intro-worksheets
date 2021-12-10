@@ -2,7 +2,7 @@
 # Distributed under the terms of the Modified BSD License.
 #ARG BASE_CONTAINER=jupyter/r-notebook@sha256:ae883206681211e3180314eee968bfeff9acf85f1be3f6b844ab49e4e3e42531
 #FROM $BASE_CONTAINER
-FROM jupyter/all-spark-notebook:17aba6048f44
+FROM jupyter/r-notebook:notebook-6.4.3
 LABEL maintainer="Tiffany Timbers <tiffany.timbers@gmail.com>"
 
 # Install R packages on conda-forge
