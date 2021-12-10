@@ -27,3 +27,9 @@ LABEL maintainer="Tiffany Timbers <tiffany.timbers@gmail.com>"
 #RUN Rscript -e "install.packages('ISLR', repos='http://cran.us.r-project.org')"
 
 RUN pip install --no-cache-dir vdom==0.5
+
+# Make sure the contents of our repo are in ${HOME}
+COPY . ${HOME}
+USER root
+RUN chown -R ${NB_UID} ${HOME}
+USER ${NB_USER}
