@@ -4,14 +4,10 @@ FROM jupyter/r-notebook:notebook-6.4.3
 
 LABEL maintainer="Tiffany Timbers <tiffany.timbers@gmail.com>"
 
-# Install R packages on conda-forge
-RUN conda install --quiet --yes -c conda-forge \
-  r-cowplot=1.1.* \
-  r-ggally=2.1.* \
-  r-gridextra=2.3 \
-  r-infer=0.5.* \
-  r-kknn=1.3.* \
-  r-rpostgres=1.3.*
+# Install R packages with specific versions from conda-forge
+# Packages and versions specified in environment.yml
+COPY environment.yml .
+RUN conda env update --file environment.yml
 
 # we can't use testthat 2.3 because of weird "no testthat_print" function error https://github.com/r-lib/rlang/issues/1112
 # we can't use testthat 3.0.4 (current release) because it doesn't include the fix to make interactive tests error https://github.com/r-lib/testthat/pull/1443
