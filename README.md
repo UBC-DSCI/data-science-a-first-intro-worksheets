@@ -29,7 +29,7 @@ Regardless of the method you choose to acces them, we also recommend reading our
 [Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
 ### Acknowledgements
-We would like to thank the [BinderHub Federation](https://mybinder.readthedocs.io/en/latest/about/federation.html#the-binderhub-federation) for their kind and generous support of [mybinder.org](https://mybinder.org/). The interactive versions of these notebooks would not be possible without their work and suport.
+We would like to thank the [BinderHub Federation](https://mybinder.readthedocs.io/en/latest/about/federation.html#the-binderhub-federation) for their kind and generous support of [mybinder.org](https://mybinder.org/). The interactive versions of these notebooks would not be possible without their efforts.
 
 ### References
 Jupyter et al., "Binder 2.0 - Reproducible, Interactive, Sharable
