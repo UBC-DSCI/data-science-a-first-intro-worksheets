@@ -154,10 +154,10 @@ test_that('Did not create an object named fruit_test', {
     expect_true(exists("fruit_test")) 
 })    
 test_that('fruit_train does not contain the correct number of rows and/or columns', {
-    expect_equal(dim(fruit_train), c(46, 7))
+    expect_equal(dim(fruit_train), c(44, 7))
 })
 test_that('fruit_test does not contain the correct number of rows and/or columns',{
-    expect_equal(dim(fruit_test), c(13, 7))
+    expect_equal(dim(fruit_test), c(15, 7))
 })    
 test_that('fruit_train contains the wrong data', {
     expect_equal(digest(int_round(sum(fruit_train$mass), 2)), 'a42fff2d173ac77a5198b1e8422cb9ba')
