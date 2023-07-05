@@ -1,8 +1,7 @@
 ## *Data Science: A First Introduction* worksheets
 
-Jupyter notebook worksheets to accompany [*Data Science: A First Introduction*](https://ubc-dsci.github.io/introduction-to-datascience/) by Tiffany Timbers, Trevor Campbell and Melissa Lee
-
-To use these worksheets, you can either:
+Jupyter notebook worksheets to accompany [*Data Science: A First Introduction*](https://ubc-dsci.github.io/introduction-to-datascience/) by
+Tiffany Timbers, Trevor Campbell and Melissa Lee. To use these worksheets, you can either:
 
 1. Click on a "launch binder" button to open an interactive, but non-peristent, version of the notebook
 
