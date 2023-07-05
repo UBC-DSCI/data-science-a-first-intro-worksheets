@@ -5,7 +5,7 @@ Tiffany Timbers, Trevor Campbell and Melissa Lee. To use these worksheets, you c
 
 2. Download this repository by clicking [here](https://github.com/UBC-DSCI/data-science-a-first-intro-worksheets/archive/refs/heads/main.zip) and follow our computer setup instructions [here](https://ubc-dsci.github.io/introduction-to-datascience/move-to-your-own-machine.html). 
 
-Regardless of the method you choose to acces them, we also recommend reading our [Combining code and text with Jupyter chapter](https://ubc-dsci.github.io/introduction-to-datascience/getting-started-with-jupyter.html) before starting out.
+Regardless of the method you choose to access them, we also recommend reading our [Combining code and text with Jupyter chapter](https://ubc-dsci.github.io/introduction-to-datascience/getting-started-with-jupyter.html) before starting out.
 
 | Book chapter | View worksheet on GitHub | Launch worksheet on myBinder.org |
 |--------------|-----------|----|
