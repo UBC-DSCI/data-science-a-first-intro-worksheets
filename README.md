@@ -25,7 +25,7 @@ Regardless of the method you choose to access them, we also recommend reading ou
 ### Licence
 [Attribution-NonCommercial-ShareAlike 4.0 International (CC BY-NC-SA 4.0)](https://creativecommons.org/licenses/by-nc-sa/4.0/)
 
-### Acknowledgements
+### Acknowledgments
 We would like to thank the [BinderHub Federation](https://mybinder.readthedocs.io/en/latest/about/federation.html#the-binderhub-federation) for their kind and generous support of [mybinder.org](https://mybinder.org/). The interactive versions of these notebooks would not be possible without their efforts.
 
 ### References
