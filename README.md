@@ -1,7 +1,7 @@
 Jupyter notebook worksheets to accompany [*Data Science: A First Introduction*](https://datasciencebook.ca) by
 Tiffany Timbers, Trevor Campbell and Melissa Lee. To use these worksheets, you can either:
 
-1. Click on a "launch binder" button to open an interactive, but non-peristent, version of the notebook
+1. Click on a "launch binder" button to open an interactive, but non-persistent, version of the notebook
 
 2. Download this repository by clicking [here](https://github.com/UBC-DSCI/data-science-a-first-intro-worksheets/archive/refs/heads/main.zip) and follow our computer setup instructions [here](https://datasciencebook.ca/move-to-your-own-machine.html). 
 
