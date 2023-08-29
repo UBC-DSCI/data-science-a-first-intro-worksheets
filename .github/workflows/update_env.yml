@@ -1,0 +1,33 @@
+name: Update the environment file
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - Dockerfile
+jobs:
+  rebuild-docker:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+    - name: Checkout main
+      uses: actions/checkout@v3
+      with:
+        fetch-depth: '0'
+        ref: 'main'
+    - name: Build the docker image
+      run: docker build -t local < Dockerfile
+    - name: Generate the environment file
+      run: docker run --rm -v $(pwd):/home/jovyan/work local mamba env export > env.yml
+    - name: Commit the updated env
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "GitHub Action"
+        git add env.yml
+        git commit -m "Update env.yml based on new Docker image"
+    - name: Push changes to build scripts
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: 'main'
