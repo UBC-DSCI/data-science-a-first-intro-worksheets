@@ -2,25 +2,25 @@ library(testthat)
 library(digest)
 library(rlang)
 
-#' Round double to precise integer
-#'
-#' `int_round` works to create an integer corresponding to a number that is 
-#' tested up to a particular decimal point of precision. This is useful when 
-#' there is a need to compare a numeric value using hashes.
-#'
-#' @param x Double vector of length one.
-#' @param digits Double vector of length one to specify decimal point of precision. Negative numbers can be used to specifying significant digits > 0.1.
-#'
-#' @return Integer vector of length one corresponding to a particular decimal point of precision.
-#'
-#' @examples
-#' # to get an integer up to two decimals of precision from 234.56789
-#' int_round(234.56789, 2)
-#'
-#' to get an integer rounded to the hundred digit from 234.56789
-#' int_round(234.56789, -2)
+# Round double to precise integer
+#
+# `int_round` works to create an integer corresponding to a number that is 
+# tested up to a particular decimal point of precision. This is useful when 
+# there is a need to compare a numeric value using hashes.
+#
+# @param x Double vector of length one.
+# @param digits Double vector of length one to specify decimal point of precision. Negative numbers can be used to specifying significant digits > 0.1.
+#
+# @return Integer vector of length one corresponding to a particular decimal point of precision.
+#
+# @examples
+# # to get an integer up to two decimals of precision from 234.56789
+# int_round(234.56789, 2)
+#
+# to get an integer rounded to the hundred digit from 234.56789
+# int_round(234.56789, -2)
 int_round <- function(x, digits){
-    x = x*10^digits
+    x = x * 10^digits
     xint = as.integer(x)
     xint1 = xint + 1L
     if (abs(xint - x) < abs(xint1 - x)){
@@ -148,15 +148,15 @@ test_6.0 <- function(){
         expect_true(exists('marathon_training'))
     })
     test_that('marathon_training does not contain 0.75 of the data.', {
-        expect_equal(dim(marathon_training), c(698,13))
-        expect_equal(digest(int_round(sum(marathon_training$age), 0)), '5109988e81575a4e65652fddb747a18f')
+        expect_equal(dim(marathon_training), c(696,13))
+        expect_equal(digest(int_round(sum(marathon_training$age), 0)), 'fbf206d474a56038342d51f17b0ba4c8')
     })
     test_that('Did not create an object named marathon_testing', {
         expect_true(exists('marathon_testing'))
     })
     test_that('marathon_testing does not contain 0.25 of the data.', {
-        expect_equal(dim(marathon_testing), c(231, 13))
-        expect_equal(digest(int_round(sum(marathon_testing$age), 0)), '9ffe9b883d53974eaa9afb9bf0ec386b')
+        expect_equal(dim(marathon_testing), c(233, 13))
+        expect_equal(digest(int_round(sum(marathon_testing$age), 0)), '4a09fa6ca41f8e9bff7eea7fd4565399')
     })
     print("Success!")
 }
@@ -181,8 +181,8 @@ test_7.0 <- function(){
         expect_true(exists("marathon_recipe"))
     })
     test_that('Data in marathon_recipe is not scaled and centered', {
-        expect_equal(digest(int_round(sum(marathon_recipe$template$max), 0)), '94e91e5e6573ddfedb81802729c39543')
-        expect_equal(digest(int_round(sum(marathon_recipe$template$time_hrs), 0)), '2213c3a0eb86305be22e0ca3b0a773c1')
+        expect_equal(digest(int_round(sum(marathon_recipe$template$max), 0)), 'f51f00d1db12d6567be874b8acd7d2e0')
+        expect_equal(digest(int_round(sum(marathon_recipe$template$time_hrs), 0)), '241691b869a7ec8e10915214932a8d86')
     })
 print("Success!")
 }
@@ -204,15 +204,15 @@ test_7.1 <- function(){
         expect_true('workflow' %in% class(marathon_workflow))
     })
     test_that('marathon_workflow does not contain the correct model specification', {
-        expect_equal(digest(as.character(marathon_workflow$fit$actions$model$spec$args$neighbors)), 'b68c9f555cfd94fe903b741afcace6c1')
-        expect_equal(digest(as.character(marathon_workflow$fit$actions$model$spec$mode)), 'b8bdd7015e0d1c6037512fd1396aef1a')
-        expect_equal(digest(as.character(marathon_workflow$fit$actions$model$spec$engine)), '93fe1d3f0a1fa2e625af1e1eb51a5c33')
+        expect_equal(digest(as_label(marathon_workflow$fit$actions$model$spec$args$neighbors)), 'c77d97a68a64b2275e17f3075c96d102')
+        expect_equal(digest(as_label(marathon_workflow$fit$actions$model$spec$mode)), 'ac823aa7d8cf42de9175927e6f7682e5')
+        expect_equal(digest(as_label(marathon_workflow$fit$actions$model$spec$engine)), '141555abd68c42d32c04aba2636361c6')
         expect_true('nearest_neighbor' %in% class(marathon_workflow$fit$actions$model$spec))
     })
     test_that('marathon_workflow does not contain the correct recipe', {
         expect_true('recipe' %in% class(marathon_workflow$pre$actions$recipe$recipe))
-        expect_equal(digest(int_round(sum(marathon_workflow$pre$actions$recipe$recipe$template$max), 0)), '94e91e5e6573ddfedb81802729c39543')
-        expect_equal(digest(int_round(sum(marathon_workflow$pre$actions$recipe$recipe$template$time_hrs), 0)), '2213c3a0eb86305be22e0ca3b0a773c1')
+        expect_equal(digest(int_round(sum(marathon_workflow$pre$actions$recipe$recipe$template$max), 0)), 'f51f00d1db12d6567be874b8acd7d2e0')
+        expect_equal(digest(int_round(sum(marathon_workflow$pre$actions$recipe$recipe$template$time_hrs), 0)), '241691b869a7ec8e10915214932a8d86')
     })
 print("Success!")
     }
@@ -225,7 +225,7 @@ test_8.0 <- function(){
     test_that('gridvals does not contain the correct data and column name', {
         expect_true('tbl' %in% class(gridvals))
         expect_true('neighbors' %in% colnames(gridvals))
-        expect_equal(digest(int_round(sum(gridvals), 0)), '7f14b492534315a44244b698e5058e39') 
+        expect_equal(digest(int_round(sum(gridvals), 0)), '251921ac8b52641fc990099b8c3d3b19') 
     })
     test_that('Did not create an object named marathon_results', {
         expect_true(exists('marathon_results'))
@@ -234,11 +234,11 @@ test_8.0 <- function(){
         expect_true('tbl' %in% class(marathon_results))
     })
     test_that('marathon_results does not contain the correct data', {
-        expect_equal(dim(marathon_results), c(400, 7))
-        expect_equal(digest(int_round(sum(marathon_results$neighbors), 0)), '07d8f52916463a9c6cd99797f0531d42')
+        expect_equal(dim(marathon_results), c(18, 7))
+        expect_equal(digest(int_round(sum(marathon_results$neighbors), 0)), 'f7783fc3ee9f29933ddb6b84b210f0f6')
         expect_equal(int_round(unique(marathon_results$n), 0), 5)
-        expect_equal(digest(int_round(sum(marathon_results$mean), 0)), '3c9f3a7a14786e414122855e84509f9d')
-        expect_equal(digest(int_round(sum(marathon_results$std_err), 0)), '7c7124efff5c7039a1b1e7cba65c5379')
+        expect_equal(digest(int_round(sum(marathon_results$mean), 0)), '8eaca7c9b35d05ab15c9125bc92372fa')
+        expect_equal(digest(int_round(sum(marathon_results$std_err), 0)), '1473d70e5646a26de3c52aa1abd85b1f')
     })
 print("Success!")
 }
@@ -262,7 +262,7 @@ test_8.1 <- function(){
         expect_true('.config' %in% colnames(marathon_min))
    })
     test_that('Best K value is incorrect', {
-        expect_equal(digest(int_round(marathon_min$neighbors, 2)), '9241e88f7548d793a2482a33d623b99f')
+        expect_equal(digest(int_round(marathon_min$neighbors, 2)), 'd35f53c853d2daeb8607b7f873601c34')
    })
     test_that('Metric is incorrect', {
         expect_equal(digest(marathon_min$.metric), '91a8c46d46a2a25459eaabfa08f35967')
@@ -275,8 +275,7 @@ test_8.2 <- function(){
         expect_true(exists('k_min'))
     })
     test_that('k_min is not correct', {
-        expect_true('integer' %in% class(k_min))
-        expect_equal(digest(int_round(k_min, 2)), '9241e88f7548d793a2482a33d623b99f')
+        expect_equal(digest(int_round(k_min, 2)), 'd35f53c853d2daeb8607b7f873601c34')
     })
     test_that('Did not create an object named marathon_best_spec', {
         expect_true(exists('marathon_best_spec'))
@@ -307,8 +306,8 @@ test_8.2 <- function(){
     })
     test_that('marathon_best_fit does not contain the correct recipe', {
         expect_true('recipe' %in% class(marathon_best_fit$pre$actions$recipe$recipe))
-        expect_equal(digest(int_round(sum(marathon_best_fit$pre$actions$recipe$recipe$template$max), 0)), '94e91e5e6573ddfedb81802729c39543')
-        expect_equal(digest(int_round(sum(marathon_best_fit$pre$actions$recipe$recipe$template$time_hrs), 0)), '2213c3a0eb86305be22e0ca3b0a773c1')
+        expect_equal(digest(int_round(sum(marathon_best_fit$pre$actions$recipe$recipe$template$max), 0)), 'f51f00d1db12d6567be874b8acd7d2e0')
+        expect_equal(digest(int_round(sum(marathon_best_fit$pre$actions$recipe$recipe$template$time_hrs), 0)), '241691b869a7ec8e10915214932a8d86')
     })
     test_that('Did not create an object named marathon_summary', {
         expect_true(exists('marathon_summary'))
@@ -345,10 +344,10 @@ test_9.0 <- function(){
         expect_true('tbl' %in% class(marathon_preds))
     })
     test_that('marathon_preds contains incorrect data', {
-        expect_equal(dim(marathon_preds), c(698, 14))
+        expect_equal(dim(marathon_preds), c(696, 14))
         expect_true('.pred' %in% colnames(marathon_preds))
-        expect_equal(digest(int_round(sum(marathon_preds$.pred), 2)), 'f5847c263ec9596eee1ae122cdd1e347')
-        expect_equal(digest(int_round(sum(marathon_preds$time_hrs), 2)), 'b9b7909060cc50e65fb7ff452897a2b4') 
+        expect_equal(digest(int_round(sum(marathon_preds$.pred), 2)), '6796478bc90c68268ec527deb6473273')
+        expect_equal(digest(int_round(sum(marathon_preds$time_hrs), 2)), '8b88838a2398216f8b3254aad44c6f8f') 
     })
     test_that('Did not create an object called marathon_plot', {
         expect_true(exists('marathon_plot'))
@@ -356,17 +355,17 @@ test_9.0 <- function(){
      test_that('max should be on the x-axis.', {
         expect_true("max" == rlang::get_expr(properties$x))
         })
-    test_that('time_hrs should be on the y-axis.', {
+    test_that('time_hrs should be on the y-axis (try adding geom_point *before* geom_line!)', {
         expect_true("time_hrs" == rlang::get_expr(properties$y))
         })
     test_that('marathon_plot should have full_predictions plotted as a blue line over the data points.', {
         expect_true('blue' %in% as.character(marathon_plot$layers[[2]]$aes_params))
         expect_true('GeomLine' %in% c(class(rlang::get_expr(marathon_plot$layers[[1]]$geom)), class(rlang::get_expr(marathon_plot$layers[[2]]$geom))))
     })
-    test_that('max should be the x argument for geom_line', {
+    test_that('max should be the x argument for geom_line, and geom_line should come *after* geom_point', {
         expect_true('max' == rlang::get_expr(marathon_plot$layers[[2]]$mapping$x))
     })
-    test_that('.pred should be the y argument for geom_line',{
+    test_that('.pred should be the y argument for geom_line,  and geom_line should come *after* geom_point',{
         expect_true('.pred' == rlang::get_expr(marathon_plot$layers[[2]]$mapping$y))
     })
     test_that('Labels on the axes/title and legend need to be changed to be descriptive, nicely formatted, and human readable.', {

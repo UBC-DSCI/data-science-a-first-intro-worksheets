@@ -1,25 +1,25 @@
 library(testthat)
 library(digest)
 
-#' Round double to precise integer
-#'
-#' `int_round` works to create an integer corresponding to a number that is 
-#' tested up to a particular decimal point of precision. This is useful when 
-#' there is a need to compare a numeric value using hashes.
-#'
-#' @param x Double vector of length one.
-#' @param digits Double vector of length one to specify decimal point of precision. Negative numbers can be used to specifying significant digits > 0.1.
-#'
-#' @return Integer vector of length one corresponding to a particular decimal point of precision.
-#'
-#' @examples
-#' # to get an integer up to two decimals of precision from 234.56789
-#' int_round(234.56789, 2)
-#' 
-#' to get an integer rounded to the hundred digit from 234.56789
-#' int_round(234.56789, -2)
+# Round double to precise integer
+#
+# `int_round` works to create an integer corresponding to a number that is 
+# tested up to a particular decimal point of precision. This is useful when 
+# there is a need to compare a numeric value using hashes.
+#
+# @param x Double vector of length one.
+# @param digits Double vector of length one to specify decimal point of precision. Negative numbers can be used to specifying significant digits > 0.1.
+#
+# @return Integer vector of length one corresponding to a particular decimal point of precision.
+#
+# @examples
+# # to get an integer up to two decimals of precision from 234.56789
+# int_round(234.56789, 2)
+#
+# to get an integer rounded to the hundred digit from 234.56789
+# int_round(234.56789, -2)
 int_round <- function(x, digits){
-    x = x*10^digits
+    x = x * 10^digits
     xint = as.integer(x)
     xint1 = xint + 1L
     if (abs(xint - x) < abs(xint1 - x)){
@@ -204,8 +204,8 @@ test_2.0 <- function(){
         expect_equal(int_round(ncol(sample_estimates), 0), 2)
         expect_equal(int_round(nrow(sample_estimates), 0), 1500)
     })
-    test_that('the column names of sample_estimates should be replicate and sample_mean', {
-        expect_equal(digest(paste(sort(colnames(sample_estimates)), collapse = "")), '7453089f8086e9a98a067f3eeac63363')
+    test_that('the column names of sample_estimates should be replicate and mean_age', {
+        expect_equal(digest(paste(sort(colnames(sample_estimates)), collapse = "")), '8339e02a763670b945b364971d27d042')
     })
     print("Success!")
 }
@@ -213,18 +213,18 @@ test_2.0 <- function(){
 test_2.1 <- function(){
     properties <- c(sampling_distribution$layers[[1]]$mapping, sampling_distribution$mapping)
     labels <- sampling_distribution$labels
-    test_that('sample_mean should be on the x-axis.', {
-        expect_true("sample_mean" == rlang::get_expr(properties$x))
+    test_that('mean_age should be on the x-axis.', {
+        expect_true("mean_age" == rlang::get_expr(properties$x))
     })
     test_that('sampling_distribution should be a histogram.', {
         expect_true("GeomBar" %in% class(sampling_distribution$layers[[1]]$geom))
     })
     test_that('sampling_distribution data should be used to create the histogram', {
         expect_equal(int_round(nrow(sampling_distribution$data), 0), 1500)
-        expect_equal(digest(int_round(sum(sampling_distribution$data$sample_mean), 2)), 'e20a3a6689ccb7122ce8aaa71bab55bf')
+        expect_equal(digest(int_round(sum(sampling_distribution$data$mean_age), 2)), 'e20a3a6689ccb7122ce8aaa71bab55bf')
     })
    test_that('Labels on the x axis should be descriptive. The plot should have a descriptive title.', {
-        expect_false((labels$x) == 'age')
+        expect_false((labels$x) == 'mean_age')
         expect_false(is.null(labels$title))
     })
     print("Success!")
@@ -254,19 +254,21 @@ test_2.4 <- function(){
 test_2.5 <- function(){
     properties <- c(sampling_distribution_20$layers[[1]]$mapping, sampling_distribution_20$mapping)
     labels <- sampling_distribution_20$labels
-    test_that('sample_mean should be on the x-axis.', {
-        expect_true("sample_mean" == rlang::get_expr(properties$x))
+    test_that('mean_age should be on the x-axis.', {
+        expect_true("mean_age" == rlang::get_expr(properties$x))
     })
     test_that('sampling_distribution should be a histogram.', {
         expect_true("GeomBar" %in% class(sampling_distribution_20$layers[[1]]$geom))
     })
     test_that('sampling_distribution data should be used to create the histogram', {
         expect_equal(int_round(nrow(sampling_distribution_20$data), 0), 1500)
-        expect_equal(digest(int_round(sum(sampling_distribution_20$data$sample_mean), 2)), '49a66adc63b05e7e8f90b66202de0b84')
+        expect_equal(digest(int_round(sum(sampling_distribution_20$data$mean_age), 2)), '49a66adc63b05e7e8f90b66202de0b84')
     })
-   test_that('Labels on the x axis should be descriptive. The plot should have the title n = 20.', {
+   test_that('Labels on the x axis should be descriptive.', {
         expect_false((labels$x) == 'age')
-        expect_equal(labels$title, "n = 20")
+    })
+    test_that('Plot title should be "Sampling Distribution (n=20) (just copy and paste that--careful with spaces!)"', {
+        expect_true((labels$title) == 'Sampling Distribution (n=20)')
     })
 
     print("Success!")
@@ -275,19 +277,21 @@ test_2.5 <- function(){
 test_2.6 <- function(){
     properties <- c(sampling_distribution_100$layers[[1]]$mapping, sampling_distribution_100$mapping)
     labels <- sampling_distribution_100$labels
-    test_that('sample_mean should be on the x-axis.', {
-        expect_true("sample_mean" == rlang::get_expr(properties$x))
+    test_that('mean_age should be on the x-axis.', {
+        expect_true("mean_age" == rlang::get_expr(properties$x))
     })
     test_that('sampling_distribution should be a histogram.', {
         expect_true("GeomBar" %in% class(sampling_distribution_100$layers[[1]]$geom))
     })
     test_that('sampling_distribution data should be used to create the histogram', {
         expect_equal(int_round(nrow(sampling_distribution_100$data), 0), 1500)
-        expect_equal(digest(int_round(sum(sampling_distribution_100$data$sample_mean), 2)), '59c92b151db8f38ba93a364fd62ae7c9')
+        expect_equal(digest(int_round(sum(sampling_distribution_100$data$mean_age), 2)), '59c92b151db8f38ba93a364fd62ae7c9')
     })
-   test_that('Labels on the x axis should be descriptive. The plot should have the title n = 100.', {
+   test_that('Labels on the x axis should be descriptive.', {
         expect_false((labels$x) == 'age')
-        expect_equal(labels$title, "n = 100")
+    })
+    test_that('Plot title should be "Sampling Distribution (n=100) (just copy and paste that--careful with spaces!)"', {
+        expect_true((labels$title) == 'Sampling Distribution (n=100)')
     })
 
     print("Success!")
@@ -297,8 +301,8 @@ test_2.7 <- function(){
     test_that('object is named sampling_distribution_panel.', {
         expect_true(exists("sampling_distribution_panel"))
     })
-    test_that('sampling distributions are plotted side-by-side with the correct titles of n = 20, "n = 40, and n = 100', {
-        expect_equal(fun(sampling_distribution_panel, "title"), c("n = 20", "n = 40", "n = 100"))
+    test_that('sampling distributions are plotted side-by-side with the correct titles of "Sampling Distribution (n=20)", "Sampling Distribution (n=40)", and "Sampling Distribution (n=100)".', {
+        expect_equal(fun(sampling_distribution_panel, "title"), c("Sampling Distribution (n=20)", "Sampling Distribution (n=40)", "Sampling Distribution (n=100)"))
     })
     print("Success!")
 }

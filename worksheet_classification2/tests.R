@@ -2,25 +2,25 @@ library(testthat)
 library(digest)
 library(rlang)
 
-#' Round double to precise integer
-#'
-#' `int_round` works to create an integer corresponding to a number that is 
-#' tested up to a particular decimal point of precision. This is useful when 
-#' there is a need to compare a numeric value using hashes.
-#'
-#' @param x Double vector of length one.
-#' @param digits Double vector of length one to specify decimal point of precision. Negative numbers can be used to specifying significant digits > 0.1.
-#'
-#' @return Integer vector of length one corresponding to a particular decimal point of precision.
-#'
-#' @examples
-#' # to get an integer up to two decimals of precision from 234.56789
-#' int_round(234.56789, 2)
-#'
-#' to get an integer rounded to the hundred digit from 234.56789
-#' int_round(234.56789, -2)
+# Round double to precise integer
+#
+# `int_round` works to create an integer corresponding to a number that is 
+# tested up to a particular decimal point of precision. This is useful when 
+# there is a need to compare a numeric value using hashes.
+#
+# @param x Double vector of length one.
+# @param digits Double vector of length one to specify decimal point of precision. Negative numbers can be used to specifying significant digits > 0.1.
+#
+# @return Integer vector of length one corresponding to a particular decimal point of precision.
+#
+# @examples
+# # to get an integer up to two decimals of precision from 234.56789
+# int_round(234.56789, 2)
+#
+# to get an integer rounded to the hundred digit from 234.56789
+# int_round(234.56789, -2)
 int_round <- function(x, digits){
-    x = x*10^digits
+    x = x * 10^digits
     xint = as.integer(x)
     xint1 = xint + 1L
     if (abs(xint - x) < abs(xint1 - x)){
@@ -154,16 +154,16 @@ test_that('Did not create an object named fruit_test', {
     expect_true(exists("fruit_test")) 
 })    
 test_that('fruit_train does not contain the correct number of rows and/or columns', {
-    expect_equal(dim(fruit_train), c(46, 7))
+    expect_equal(dim(fruit_train), c(43, 7))
 })
 test_that('fruit_test does not contain the correct number of rows and/or columns',{
-    expect_equal(dim(fruit_test), c(13, 7))
+    expect_equal(dim(fruit_test), c(16, 7))
 })    
 test_that('fruit_train contains the wrong data', {
-    expect_equal(digest(int_round(sum(fruit_train$mass), 2)), 'a42fff2d173ac77a5198b1e8422cb9ba')
+    expect_equal(digest(int_round(sum(fruit_train$mass), 2)), '9bf942a5a6abebbd695206d1702daf85')
 })
 test_that('fruit_test contains the wrong data', {
-    expect_equal(digest(int_round(sum(fruit_test$mass), 2)), 'fcb11cb4ce2aa88708f4f5895d59abbe')
+    expect_equal(digest(int_round(sum(fruit_test$mass), 2)), '2c94ccd3848af6dda07a29737ae9bff9')
 })    
 print("Success!")
     }
@@ -182,8 +182,8 @@ test_that('fruit_recipe contains the wrong columns', {
     expect_true('fruit_name' %in% colnames(fruit_recipe$template))
     })
 test_that('fruit_recipe contains the wrong data', {
-    expect_equal(digest(int_round(sum(fruit_recipe$template$mass), 2)), 'a42fff2d173ac77a5198b1e8422cb9ba')
-    expect_equal(digest(int_round(sum(fruit_recipe$template$color_score), 2)), '656cbb68c33ed8c769ed3fb3a423f886')
+    expect_equal(digest(int_round(sum(fruit_recipe$template$mass), 2)), '9bf942a5a6abebbd695206d1702daf85')
+    expect_equal(digest(int_round(sum(fruit_recipe$template$color_score), 2)), '10247a99309183ca46c8bc0cbcfc4862')
     })    
 test_that('all_predictors() is not scaled and centered', {
     expect_equal(digest(as.character(get_expr(fruit_recipe$steps[[1]]$terms))), 'f34b27deb5a8023de51b602e9aacf535')
@@ -224,6 +224,9 @@ test_that('fruit_fit does not contain scaled data', {
     expect_equal(digest(int_round(sum(fruit_fit$pre$mold$predictors$mass), 2)), '1473d70e5646a26de3c52aa1abd85b1f')
     expect_equal(digest(int_round(sum(fruit_fit$pre$mold$predictors$color_score), 2)), '1473d70e5646a26de3c52aa1abd85b1f')
 })
+test_that('you should only fit the model on the training dataset', {
+    expect_equal(nrow(fruit_fit$pre$mold$outcomes), nrow(fruit_train))
+})
 print("Success!")    
     }
 
@@ -235,7 +238,7 @@ test_that('fruit_test_predictions should be a tibble.', {
     expect_true('tbl' %in% class(fruit_test_predictions))
     })
 test_that('fruit_test_predictions should contain the original data and the new prediction column', {
-    expect_equal(dim(fruit_test_predictions), c(13, 8))
+    expect_equal(dim(fruit_test_predictions), c(16, 8))
     expect_true('.pred_class' %in% colnames(fruit_test_predictions))
     })    
 print("Success!")
@@ -249,7 +252,7 @@ test_that('fruit_prediction_accuracy should be a tibble', {
     expect_true('tbl' %in% class(fruit_prediction_accuracy))
     })
 test_that('estimates are incorrect', {
-    expect_equal(digest(int_round(sum(fruit_prediction_accuracy$.estimate), 2)), '44865f1c212fb27ca7ab5b7154dcf398')
+    expect_equal(digest(int_round(sum(fruit_prediction_accuracy$.estimate), 2)), 'aa46ec0eda6b9268581f7b6334fe5368')
     })
 test_that('the estimator should be a multiclass classification', {
     expect_true('multiclass' %in% fruit_prediction_accuracy$.estimator)
@@ -265,7 +268,7 @@ test_that('fruit_mat is not a confusion matrix', {
     expect_true('conf_mat' %in% class(fruit_mat))
     })
 test_that('Number of observations is incorrect', {
-    expect_equal(digest(int_round(sum(as.tibble(fruit_mat$table)[3]), 2)), '306a937dfa0335e74514e4c6044755f6')
+    expect_equal(digest(int_round(sum(as_tibble(fruit_mat$table)[3]), 2)), '9770d56d568e4493bed5636f1fe8e1f3')
     })
 print("Success!")
     }
@@ -295,15 +298,15 @@ test_that('fruit_vfold contains the incorrect data', {
     expect_equal(dim(fruit_vfold), c(5, 2))
 })
 test_that('fruit_vfold does not use the training data', {
-    expect_equal(digest(int_round(sum(fruit_vfold$splits[[1]]$data$color_score), 2)), '656cbb68c33ed8c769ed3fb3a423f886')
-    expect_equal(digest(int_round(sum(fruit_vfold$splits[[1]]$data$mass), 2)), 'a42fff2d173ac77a5198b1e8422cb9ba')
+    expect_equal(digest(int_round(sum(fruit_vfold$splits[[1]]$data$color_score), 2)), '10247a99309183ca46c8bc0cbcfc4862')
+    expect_equal(digest(int_round(sum(fruit_vfold$splits[[1]]$data$mass), 2)), '9bf942a5a6abebbd695206d1702daf85')
 })
 test_that('strata argument is not fruit_name', {
-    expect_equal(digest(int_round(sum(fruit_vfold$splits[[1]]$in_id), 2)), 'df9b1bae6656d96dfbe896782bd9de05')
-    expect_equal(digest(int_round(sum(fruit_vfold$splits[[2]]$in_id), 2)), 'd01f1e59ae3a6b2db6831e601606b1c0')
-    expect_equal(digest(int_round(sum(fruit_vfold$splits[[3]]$in_id), 2)), '71321611fabe5aee0df74bb96fe3a545')
-    expect_equal(digest(int_round(sum(fruit_vfold$splits[[4]]$in_id), 2)), 'd01f1e59ae3a6b2db6831e601606b1c0')
-    expect_equal(digest(int_round(sum(fruit_vfold$splits[[5]]$in_id), 2)), '28db4e404a1c7e394adb8f9a21711424')
+    expect_equal(digest(int_round(sum(fruit_vfold$splits[[1]]$in_id), 2)), 'f9057f509d538da8293fcdedc62f73aa')
+    expect_equal(digest(int_round(sum(fruit_vfold$splits[[2]]$in_id), 2)), 'b58260193fe0f701941c6e0cfc96ad00')
+    expect_equal(digest(int_round(sum(fruit_vfold$splits[[3]]$in_id), 2)), 'b845fe9fbc8f608114d10197f7452d3a')
+    expect_equal(digest(int_round(sum(fruit_vfold$splits[[4]]$in_id), 2)), '39c92dfe53b2bac3aa745c3b1bf0e2e8')
+    expect_equal(digest(int_round(sum(fruit_vfold$splits[[5]]$in_id), 2)), '699513ef5a64b16969e02508265f4880')
 })
 print("Success!")
     }
@@ -335,11 +338,11 @@ test_that('Did not create an object named fruit_metrics', {
     expect_true(exists("fruit_metrics")) 
 })
 test_that('fruit_metrics contains the wrong data', {
-    expect_equal(dim(fruit_metrics), c(2, 5))
+    expect_equal(dim(fruit_metrics), c(2, 6))
     expect_true('mean' %in% colnames(fruit_metrics))
     expect_true('std_err' %in% colnames(fruit_metrics))
     expect_equal(digest(int_round(sum(fruit_metrics$mean), 2)), '3bb12916e7f6fda4645dd4ecaedb76b9')
-    expect_equal(digest(int_round(sum(fruit_metrics$std_err), 2)), '8eaca7c9b35d05ab15c9125bc92372fa')
+    expect_equal(digest(int_round(sum(fruit_metrics$std_err), 2)), 'dd4ad37ee474732a009111e3456e7ed7')
     expect_equal(digest(int_round(sum(fruit_metrics$n), 2)), 'b6a6227038bf9be67533a45a6511cc7e')
 })
 print("Success!")
@@ -377,8 +380,8 @@ test_that('knn_results should be a tibble', {
 test_that('knn_results does not contain the correct data',{
     expect_equal(dim(knn_results), c(20, 7))
     expect_equal(digest(int_round(sum(knn_results$neighbors), 2)), 'bc0bb1b780c5a2b3fbe18f1017288655')
-    expect_equal(digest(int_round(sum(knn_results$mean), 2)), '2fbed5c22f5fcb638e9cad6f0d588e47')
-    expect_equal(digest(int_round(sum(knn_results$std_err), 2)), '6c3a3556917f12517be89f353d7b93ff')
+    expect_equal(digest(int_round(sum(knn_results$mean), 2)), '2b7ae7814dec0da4b82acdfb80a9549b')
+    expect_equal(digest(int_round(sum(knn_results$std_err), 2)), '376fd1e6227fbec1b4f0dfc602df8ac2')
 })
 test_that('grid is not set to 10', {
     expect_equal(int_round(length(unique(knn_results$.config)), 0), 10)
