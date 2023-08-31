@@ -93,7 +93,7 @@ print("Success!")
 
 test_2.3 <- function(){
     test_that('Solution is incorrect', {
-        expect_that(exists('answer2.3'), is_true())
+        expect_true(exists('answer2.3'))
         expect_equal(digest(answer2.3), '3a5505c06543876fe45598b5e5e5195d') # we hid the answer to the test here so you can't see it, but we can still run the test
         })
 print("Success!")
@@ -266,11 +266,11 @@ test_3.9 <- function(){
         expect_true("life_expectancy" == rlang::get_expr(properties$y))
         })
     test_that('header_plot should be a scatter plot.', {
-        expect_that("GeomPoint" %in% c(class(header_plot$layers[[1]]$geom)) , is_true())
+        expect_true("GeomPoint" %in% c(class(header_plot$layers[[1]]$geom)))
         })
     test_that('Labels on the axes should be descriptive and human readable.', {
-        expect_that((header_plot$labels$x) == 'GDP_per_capita', is_false())
-        expect_that((header_plot$labels$y) == 'life_expectancy', is_false())
+        expect_false((header_plot$labels$x) == 'GDP_per_capita')
+        expect_false((header_plot$labels$y) == 'life_expectancy')
         })
 print("Success!")
 }
@@ -324,7 +324,7 @@ test_4.3.3 <- function(){
     test_that('flight_data does not contain the correct information.', {
         expect_equal(digest(int_round(as_tibble(tally(flight_data))[[1]], 2)), '6bf4cc4788963306e4991f74f4edfd06')
         expect_equal(digest(int_round(dim(flight_data)[2], 2)), '306a937dfa0335e74514e4c6044755f6')
-        expect_equal(digest(int_round(as_tibble(summarize(flight_data, sum=sum(ARRIVAL_DELAY)))[[1]], 2)), '18935ad0b2d8d671ed44f695a1324b62')
+        expect_equal(digest(int_round(as_tibble(summarize(flight_data, sum=sum(ARRIVAL_DELAY, na.rm=TRUE)))[[1]], 2)), '18935ad0b2d8d671ed44f695a1324b62')
         expect_equal(colnames(flight_data), c('YEAR', 'MONTH', 'DAY', 'DAY_OF_WEEK', 'ORIGIN_AIRPORT', 'DESTINATION_AIRPORT', 'DISTANCE', 'SCHEDULED_DEPARTURE', 'DEPARTURE_DELAY', 'SCHEDULED_ARRIVAL', 'ARRIVAL_DELAY', 'DIVERTED', 'CANCELLED'))
         })
 
@@ -445,7 +445,7 @@ test_5.4 <- function(){
         expect_true(exists("gwp_value")) 
         })
     test_that('gwp_value should be a vector containing characters.', {
-        expect_that(is.vector(gwp_value), is_true())
+        expect_true(is.vector(gwp_value))
         expect_equal(class(gwp_value), "character")
         })
 print("Success!")
@@ -459,8 +459,8 @@ test_5.5 <- function(){
         expect_true('data.frame' %in% class(gwp))
         })
     test_that('gwp should contain the columns: year and gwp_value', {
-        expect_that("year" %in% colnames(gwp), is_true())
-        expect_that("gwp_value" %in% colnames(gwp), is_true())
+        expect_true("year" %in% colnames(gwp))
+        expect_true("gwp_value" %in% colnames(gwp))
         })
 print("Success!")
 }
@@ -480,11 +480,11 @@ test_5.6 <- function(){
         expect_true("gwp_value" == rlang::get_expr(properties$y))
         })
     test_that('gwp_historical should be a line plot.', {
-        expect_that("GeomLine" %in% c(class(gwp_historical$layers[[1]]$geom)) , is_true())
+        expect_true("GeomLine" %in% c(class(gwp_historical$layers[[1]]$geom)))
         })
     test_that('Labels on the axes should be descriptive and human readable.', {
-        expect_that((gwp_historical$labels$y) == 'gwp_value', is_false())
-        expect_that((gwp_historical$labels$x) == 'sqrt_year', is_false())
+        expect_false((gwp_historical$labels$y) == 'gwp_value')
+        expect_false((gwp_historical$labels$x) == 'sqrt_year')
         })
 print("Success!")
 }

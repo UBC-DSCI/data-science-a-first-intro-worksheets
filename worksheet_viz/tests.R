@@ -105,10 +105,10 @@ test_1.2 <- function(){
         expect_true(exists("world_vacc_plot")) 
         })
     test_that('year should be on the x-axis.', {
-        expect_that("yr" %in% c(rlang::get_expr(world_vacc_plot$mapping$x),rlang::get_expr(world_vacc_plot$layers[[1]]$mapping$x)), is_true())
+        expect_true("yr" %in% c(rlang::get_expr(world_vacc_plot$mapping$x),rlang::get_expr(world_vacc_plot$layers[[1]]$mapping$x)))
         })
     test_that('pct_vaccinated should be on the y-axis.', {
-        expect_that("pct_vaccinated" %in% c(rlang::get_expr(world_vacc_plot$mapping$y), rlang::get_expr(world_vacc_plot$layers[[1]]$mapping$y)) , is_true())
+        expect_true("pct_vaccinated" %in% c(rlang::get_expr(world_vacc_plot$mapping$y), rlang::get_expr(world_vacc_plot$layers[[1]]$mapping$y)))
         })
     test_that('world_vacc_plot should be a scatter plot.', {
         expect_true("GeomPoint" %in% c(class(world_vacc_plot$layers[[1]]$geom)))
@@ -444,7 +444,7 @@ test_2.3 <- function(){
         expect_equal(dim(top_restaurants), c(9, 2))
         })
     test_that('Columns in fast_food contain incorrect values.', {
-        expect_equal(digest(int_round(sum(as.numeric(top_restaurants$n, na.rm = TRUE)), 2)), 'aa0419a07d43532e90a1f1c2d0c2b665') 
+        expect_equal(digest(int_round(sum(as.numeric(top_restaurants$count, na.rm = TRUE)), 2)), 'aa0419a07d43532e90a1f1c2d0c2b665') 
         })
 print("Success!")
     }
@@ -458,14 +458,14 @@ test_2.4 <- function(){
     test_that('name should be on the x-axis.', {
         expect_true("name" == rlang::get_expr(properties$x))
         })
-    test_that('n should be on the y-axis.', {
-        expect_true("n" == rlang::get_expr(properties$y))
+    test_that('count should be on the y-axis.', {
+        expect_true("count" == rlang::get_expr(properties$y))
         })
     test_that('vertical_world should be a bar plot.', {
         expect_true("GeomBar" %in% c(class(count_bar_chart$layers[[1]]$geom)))
         })
     test_that('Labels on the axes and legend should be descriptive and human readable.', {
-        expect_false((labels$y) == 'n')
+        expect_false((labels$y) == 'count')
         expect_false((labels$x) == 'name')
         })
 print("Success!")
@@ -486,14 +486,14 @@ test_2.5_A <- function(){
     test_that('hjust should equal 1', {
         expect_equal(digest(int_round(count_bar_chart_A$theme$axis.text.x$hjust, 2)), '5d6e7fe43b3b73e5fd2961d5162486fa')
         })
-    test_that('n should be on the y-axis.', {
-        expect_true("n" == rlang::get_expr(properties$y))
+    test_that('count should be on the y-axis.', {
+        expect_true("count" == rlang::get_expr(properties$y))
         })
     test_that('vertical_world should be a bar plot.', {
         expect_true("GeomBar" %in% c(class(count_bar_chart_A$layers[[1]]$geom)))
         })
     test_that('Labels on the axes and legend should be descriptive and human readable.', {
-        expect_false((labels$y) == 'n')
+        expect_false((labels$y) == 'count')
         expect_false((labels$x) == 'name')
         })
 print("Success!")
@@ -505,21 +505,18 @@ test_2.5_B <- function(){
     test_that('Did not create a plot named count_bar_chart_B', {
         expect_true(exists("count_bar_chart_B")) 
         })
-    test_that('name should be on the x-axis.', {
-        expect_true("name" == rlang::get_expr(properties$x))
+    test_that('name should be on the y-axis.', {
+        expect_true("name" == rlang::get_expr(properties$y))
         })
-    test_that('The coordinate axes should be flipped', {
-        expect_true("CoordFlip" %in% class(ggplot_build(count_bar_chart_B)$layout$coord))
-        })
-    test_that('n should be on the y-axis.', {
-        expect_true("n" == rlang::get_expr(properties$y))
+    test_that('count should be on the x-axis.', {
+        expect_true("count" == rlang::get_expr(properties$x))
         })
     test_that('vertical_world should be a bar plot.', {
         expect_true("GeomBar" %in% c(class(count_bar_chart_B$layers[[1]]$geom)))
         })
     test_that('Labels on the axes and legend should be descriptive and human readable.', {
-        expect_false((labels$y) == 'n')
-        expect_false((labels$x) == 'name')
+        expect_false((labels$x) == 'count')
+        expect_false((labels$y) == 'name')
         })
 print("Success!")
     }
@@ -542,7 +539,7 @@ test_2.7 <- function(){
         expect_equal(dim(state_counts), c(3, 2))
         })
     test_that('Columns in state_counts contain incorrect values.', {
-        expect_equal(digest(int_round(sum(as.numeric(state_counts$n, na.rm = TRUE)), 2)), 'aa0419a07d43532e90a1f1c2d0c2b665') 
+        expect_equal(digest(int_round(sum(as.numeric(state_counts$count, na.rm = TRUE)), 2)), 'aa0419a07d43532e90a1f1c2d0c2b665') 
         })
 print("Success!")
     }
@@ -556,8 +553,8 @@ test_2.8 <- function(){
     test_that('state should be on the x-axis.', {
         expect_true("st" == rlang::get_expr(properties$x))
         })
-    test_that('n should be on the y-axis.', {
-        expect_true("n" == rlang::get_expr(properties$y))
+    test_that('count should be on the y-axis.', {
+        expect_true("count" == rlang::get_expr(properties$y))
         })
     test_that('state_counts_plot should be a bar plot.', {
         expect_true("GeomBar" %in% c(class(state_counts_plot$layers[[1]]$geom)))
@@ -566,7 +563,7 @@ test_2.8 <- function(){
         expect_false("PositionFill" %in% class(state_counts_plot$layers[[1]]$position)) 
         })
     test_that('Labels on the axes and legend should be descriptive and human readable.', {
-        expect_false((labels$y) == 'n')
+        expect_false((labels$y) == 'count')
         expect_false((labels$x) == 'st')
         })
 print("Success!")
@@ -591,13 +588,13 @@ test_2.9.2 <- function(){
         expect_true(exists("top_n_state")) 
         })
     test_that('The state column in top_n_state should only contain CA, OR, and WA', {
-        expect_equal(digest(top_n_state$st), '8e6ddcfd9ebaf85379a6d46f7949bce0')
+        expect_equal(digest(sort(top_n_state$st)), 'bb7fea2b131bdeb2ff63fa40b50f3006')
         })
     test_that('top_n_state does not contain the correct number of rows and/or columns.', {
         expect_equal(dim(top_n_state), c(27, 3))
         })
     test_that('Columns in top_n_state contain incorrect values.', {
-        expect_equal(digest(int_round(sum(top_n_state$n, na.rm = TRUE), 2)), 'aa0419a07d43532e90a1f1c2d0c2b665') 
+        expect_equal(digest(int_round(sum(top_n_state$count, na.rm = TRUE), 2)), 'aa0419a07d43532e90a1f1c2d0c2b665') 
         })
 print("Success!")
     }
@@ -611,8 +608,8 @@ test_2.9.3 <- function(){
     test_that('state should be on the x-axis.', {
         expect_true("st" == rlang::get_expr(properties$x))
         })
-    test_that('n should be on the y-axis.', {
-        expect_true("n" == rlang::get_expr(properties$y))
+    test_that('count should be on the y-axis.', {
+        expect_true("count" == rlang::get_expr(properties$y))
         })
     test_that('name should be used to determine bar fill colour.', {
         expect_true("name" == rlang::get_expr(properties$fill)) 
@@ -624,7 +621,7 @@ test_2.9.3 <- function(){
         expect_true("PositionDodge" %in% class(top_n_state_plot$layers[[1]]$position))
         })
     test_that('Labels on the axes and legend should be descriptive and human readable.', {
-        expect_false((labels$y) == 'n')
+        expect_false((labels$y) == 'count')
         expect_false((labels$x) == 'st')
         expect_false((labels$fill) == 'name')
         })
@@ -640,8 +637,8 @@ test_2.9.4 <- function(){
     test_that('state should be on the x-axis.', {
         expect_true("st" == rlang::get_expr(properties$x))
         })
-    test_that('n should be on the y-axis.', {
-        expect_true("n" == rlang::get_expr(properties$y))
+    test_that('count should be on the y-axis.', {
+        expect_true("count" == rlang::get_expr(properties$y))
         })
     test_that('name should be used to determine bar fill colour.', {
         expect_true("name" == rlang::get_expr(properties$fill)) 
@@ -653,7 +650,7 @@ test_2.9.4 <- function(){
         expect_true("PositionFill" %in% class(top_n_state_plot$layers[[1]]$position))
         })
     test_that('Labels on the axes and legend should be descriptive and human readable.', {
-        expect_false((labels$y) == 'n')
+        expect_false((labels$y) == 'count')
         expect_false((labels$x) == 'st')
         expect_false((labels$x) == 'name')
         })

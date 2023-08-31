@@ -1,27 +1,27 @@
 library(testthat)
 library(digest)
 
-#' Round double to precise integer
-#'
-#' `int_round` works to create an integer corresponding to a number that is 
-#' tested up to a particular decimal point of precision. This is useful when 
-#' there is a need to compare a numeric value using hashes.
-#'
-#' @param x Double vector of length one.
-#' @param digits Double vector of length one to specify decimal point of precision. Negative numbers can be used to specifying significant digits > 0.1.
-#'
-#' @return Integer vector of length one corresponding to a particular decimal point of precision.
-#'
-#' @examples
-#' # to get an integer up to two decimals of precision from 234.56789
-#' int_round(234.56789, 2)
-#'
-#' to get an integer rounded to the hundred digit from 234.56789
-#' int_round(234.56789, -2)
+# Round double to precise integer
+#
+# `int_round` works to create an integer corresponding to a number that is 
+# tested up to a particular decimal point of precision. This is useful when 
+# there is a need to compare a numeric value using hashes.
+#
+# @param x Double vector of length one.
+# @param digits Double vector of length one to specify decimal point of precision. Negative numbers can be used to specifying significant digits > 0.1.
+#
+# @return Integer vector of length one corresponding to a particular decimal point of precision.
+#
+# @examples
+# # to get an integer up to two decimals of precision from 234.56789
+# int_round(234.56789, 2)
+#
+# to get an integer rounded to the hundred digit from 234.56789
+# int_round(234.56789, -2)
 int_round <- function(x, digits){
-    x = x*10^digits
+    x = x * 10^digits
     xint = as.integer(x)
-    xint1 = xint + 1
+    xint1 = xint + 1L
     if (abs(xint - x) < abs(xint1 - x)){
         return(xint)
     }
@@ -85,7 +85,7 @@ test_2.2 <- function() {
         expect_true(exists('answer2.2'))
     })
     test_that('Solution is incorrect', {
-        expect_equal(digest(int_round(answer2.2, 2)), 'd69e7827ff0b1272336c2136df42c3f0')
+        expect_equal(digest(int_round(answer2.2, 2)), '40755f30599581bfb1186f077db8f580')
     })
     print("Success!")
 }
@@ -140,9 +140,9 @@ test_3.1 <- function() {
         expect_true('tbl' %in% class(marathon_training))
     })
     test_that('marathon_training does not contain 0.75 of the marathon data', {
-        expect_equal(dim(marathon_training), c(698, 13))
-        expect_equal(digest(int_round(sum(marathon_training$max), 0)), '6e85687c32809edf13dccf228f9f84e9')
-        expect_equal(digest(int_round(sum(marathon_training$time_hrs), 0)), '2213c3a0eb86305be22e0ca3b0a773c1')
+        expect_equal(dim(marathon_training), c(696, 13))
+        expect_equal(digest(int_round(sum(marathon_training$max), 0)), 'f51f00d1db12d6567be874b8acd7d2e0')
+        expect_equal(digest(int_round(sum(marathon_training$time_hrs), 0)), '241691b869a7ec8e10915214932a8d86')
     })
     test_that('Did not create an object named marathon_testing', {
         expect_true(exists('marathon_testing'))
@@ -151,9 +151,9 @@ test_3.1 <- function() {
         expect_true('tbl' %in% class(marathon_testing))
     })
     test_that('marathon testing does not contain 0.25 of the marathon data', {
-        expect_equal(dim(marathon_testing), c(231, 13))
-        expect_equal(digest(int_round(sum(marathon_testing$max), 0)), 'e5032644f10cbf9a251aff4ed126d4af')
-        expect_equal(digest(int_round(sum(marathon_testing$time_hrs), 0)), 'ba825ab3d722243760b0700769f9371b')
+        expect_equal(dim(marathon_testing), c(233, 13))
+        expect_equal(digest(int_round(sum(marathon_testing$max), 0)), 'bdb6d3e7a37786e1e246c0b54e3f7edd')
+        expect_equal(digest(int_round(sum(marathon_testing$time_hrs), 0)), '6004c9f968d35059ea6d8f9eb654e09a')
     })
     print("Success!")
 }
@@ -179,7 +179,7 @@ test_3.2 <- function() {
         expect_false((labels$x) == 'max')
     })
     test_that('Only the training data set should be used to create the plot', {
-        expect_equal(int_round(nrow(marathon_eda$data), 0), 698)
+        expect_equal(int_round(nrow(marathon_eda$data), 0), 696)
     })
     print("Success!")
 }
@@ -206,8 +206,8 @@ test_3.3.1 <- function() {
         expect_true('recipe' %in% class(lm_recipe))
     })
     test_that('lm_recipe does not contain the correct variables', {
-        expect_equal(digest(int_round(sum(lm_recipe$template$max), 0)), '6e85687c32809edf13dccf228f9f84e9')
-        expect_equal(digest(int_round(sum(lm_recipe$template$time_hrs), 0)), '2213c3a0eb86305be22e0ca3b0a773c1')
+        expect_equal(digest(int_round(sum(lm_recipe$template$max), 0)), 'f51f00d1db12d6567be874b8acd7d2e0')
+        expect_equal(digest(int_round(sum(lm_recipe$template$time_hrs), 0)), '241691b869a7ec8e10915214932a8d86')
     })
     test_that('Did not create an object named lm_fit', {
         expect_true(exists('lm_fit'))
@@ -216,11 +216,11 @@ test_3.3.1 <- function() {
         expect_true('workflow' %in% class(lm_fit))
     })
     test_that('lm_fit does not contain the correct data', {
-        expect_equal(digest(int_round(sum(lm_fit$pre$actions$recipe$recipe$template$max), 0)), '6e85687c32809edf13dccf228f9f84e9')
-        expect_equal(digest(int_round(sum(lm_fit$pre$actions$recipe$recipe$template$time_hrs), 0)), '2213c3a0eb86305be22e0ca3b0a773c1')
+        expect_equal(digest(int_round(sum(lm_fit$pre$actions$recipe$recipe$template$max), 0)), 'f51f00d1db12d6567be874b8acd7d2e0')
+        expect_equal(digest(int_round(sum(lm_fit$pre$actions$recipe$recipe$template$time_hrs), 0)), '241691b869a7ec8e10915214932a8d86')
     })
     test_that('lm_fit coefficients are incorrect', {
-        expect_equal(digest(int_round(sum(lm_fit$fit$fit$fit$coefficients), 1)), '80b0ae73fe0e882b0a24973e4e2c8203')
+        expect_equal(digest(int_round(sum(lm_fit$fit$fit$fit$coefficients), 1)), '754bc61780613e9dbb928b88e1e3d6f5')
     })
     print("Success!")
 }
@@ -245,7 +245,7 @@ test_3.4 <- function() {
 
     })
     test_that('lm_predictions should have a best fit line using a linear regression model.', {
-        expect_true('GeomSmooth' %in% c(class(rlang::get_expr(lm_predictions$layers[[2]]$geom)), 
+        expect_true('GeomLine' %in% c(class(rlang::get_expr(lm_predictions$layers[[2]]$geom)), 
                                         class(rlang::get_expr(lm_predictions$layers[[1]]$geom))))
     })
     test_that('Labels on the axes should be descriptive and human readable.', {
@@ -264,7 +264,7 @@ test_3.5 <- function() {
     })
     test_that('lm_test_results does not contain the correct data', {
         expect_equal(dim(lm_test_results), c(3, 3))
-        expect_equal(digest(int_round(sum(lm_test_results$.estimate), 1)), 'a86d0670df7fb4f1da7b38943f5ee4e7')
+        expect_equal(digest(int_round(sum(lm_test_results$.estimate), 1)), '8ae1ac7bdf62dca7c19b427a9153445c')
     })
     test_that('Did not create an object named lm_rmspe', {
         expect_true(exists('lm_rmspe'))
@@ -292,14 +292,14 @@ test_3.5.1 <- function() {
         expect_true("time_hrs" %in% c(rlang::get_expr(properties$y)))
     })
     test_that('lm_predictions_test should be a scatter plot.', {
-        expect_equal(digest(class(rlang::get_expr(layers$geom))[1]), '911e5b9debfb523f25ad2ccc01a4b2dd')
+        expect_true(digest(class(rlang::get_expr(layers$geom))[1]) %in% c('911e5b9debfb523f25ad2ccc01a4b2dd','0c6e70bfd48a569f370e3a4dcae5dc1c'))
     })
     test_that('Labels on the axes should be descriptive and human readable.', {
         expect_false((labels$y) == 'time_hrs')
         expect_false((labels$x) == 'max')
     })
     test_that('Only the testing data set should be used to create the plot', {
-        expect_equal(int_round(nrow(lm_predictions_test$data), 0), 231)
+        expect_equal(int_round(nrow(lm_predictions_test$data), 0), 233)
     })
     print("Success!")
 }

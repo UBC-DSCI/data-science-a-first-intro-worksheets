@@ -69,7 +69,7 @@ print("Success!")
 
 test_5.1 <- function(){
     test_that('Solution is incorrect, the rvest package needs to be loaded', {
-        expect_that("package:rvest" %in% search() , is_true())
+        expect_true("package:rvest" %in% search())
         })
 print("Success!")
     }

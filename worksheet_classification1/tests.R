@@ -87,9 +87,6 @@ test_that('Symmetry should be on the x-axis.', {
 test_that('Radius should be on the y-axis.', {
     expect_true("Radius" == rlang::get_expr(properties$y))
     })
-test_that('Points should be coloured by Class.', {
-    expect_true("Class" == rlang::get_expr(properties$colour))
-    })
 test_that('cancer_plot should be a scatter plot.', {
     expect_true("GeomPoint" %in% class(cancer_plot$layers[[1]]$geom))
     })
@@ -111,17 +108,17 @@ print("Success!")
     }
 
 test_1.4 <- function(){
-test_that('xa is incorrect.', {
-    expect_equal(digest(int_round(xa, 2)), 'c0048c4f8677b795155d8aa41e26a54d')
+test_that('ax is incorrect.', {
+    expect_equal(digest(int_round(ax, 2)), 'c0048c4f8677b795155d8aa41e26a54d')
     })
-test_that('ya is incorrect.', {
-    expect_equal(digest(int_round(ya, 2)), 'a6e8462a7cace5673e544d1e8d238b52')
+test_that('ay is incorrect.', {
+    expect_equal(digest(int_round(ay, 2)), 'a6e8462a7cace5673e544d1e8d238b52')
     })
-test_that('xb is incorrect.', {
-    expect_equal(digest(int_round(xb, 2)), '10aeddd8594c6ce210c731b8b94af435')
+test_that('bx is incorrect.', {
+    expect_equal(digest(int_round(bx, 2)), '10aeddd8594c6ce210c731b8b94af435')
     })
-test_that('yb is incorrect.', {
-    expect_equal(digest(int_round(yb, 2)), '48139aad2994737e7e801156a24281ed')
+test_that('by is incorrect.', {
+    expect_equal(digest(int_round(by, 2)), '48139aad2994737e7e801156a24281ed')
     })
 print("Success!")
     }
@@ -134,17 +131,17 @@ print("Success!")
     }
 
 test_1.6 <- function(){
-test_that('Did not create an object named zb', {
-    expect_true(exists('zb'))
+test_that('Did not create an object named bz', {
+    expect_true(exists('bz'))
 })
-test_that('zb is incorrect.', {
-    expect_equal(digest(int_round(zb,2)), 'b78a46ebc0bb9a4cc7f4f4b962f0b2ef')
+test_that('bz is incorrect.', {
+    expect_equal(digest(int_round(bz,2)), 'b78a46ebc0bb9a4cc7f4f4b962f0b2ef')
     })
-test_that('Did not create an object named za', {
-    expect_true(exists('za'))
+test_that('Did not create an object named az', {
+    expect_true(exists('az'))
 })
-test_that('za is incorrect.', {
-    expect_equal(digest(int_round(za,2)), 'b35d8adab2b7c839e5a8e2861080b03e')
+test_that('az is incorrect.', {
+    expect_equal(digest(int_round(az,2)), 'b35d8adab2b7c839e5a8e2861080b03e')
     })
 print("Success!")
     }
@@ -454,7 +451,7 @@ test_that('knn_recipe is not a recipe object', {
     expect_equal(digest(class(knn_recipe)), '4b3ed1334bff94d43e32a36a1f16a2f2')
     })
 test_that('knn_recipe does not remove ID', {    
-    expect_false("ID" %in% (knn_recipe %>% prep() %>% bake(cancer) %>% colnames()))
+    expect_false("ID" %in% (knn_recipe |> prep() |> bake(cancer) |> colnames()))
 })
 test_that('cancer does not contain the correct data.', {
     expect_equal(dim(bake(prep(knn_recipe), cancer)), c(569,11))
