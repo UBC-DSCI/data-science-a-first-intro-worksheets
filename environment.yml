@@ -2,4 +2,4 @@ name: base
 channels:
   - conda-forge
 dependencies:
-  - ". . Hello readers! This is a message from the authors of 'Data Science: A First Introduction'. Unfortunately the `conda env update --file ...` command that we provided in the 1st edition of the book no longer works properly for all operating systems. So instead, if you are on either Mac or Ubuntu, ... [TODO]`
+  - ". . Hello readers! This is a message from the authors of 'Data Science: A First Introduction'. Unfortunately the `conda env update --file ...` command that we provided in the 1st edition of the book no longer works properly for all operating systems. Please visit https://worksheets.datasciencebook.ca and read through that page to find the new instructions for your operating system!`
