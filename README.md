@@ -7,6 +7,8 @@ Tiffany Timbers, Trevor Campbell and Melissa Lee. To use these worksheets, you c
 
 Regardless of the method you choose to access them, we also recommend reading our [Combining code and text with Jupyter chapter](https://datasciencebook.ca/jupyter.html) before starting out.
 
+**If you are reading the 1st print edition:** The instructions in the 1st edition printed book unfortunately no longer work. Please visit and follow [the setup instructions in the online book](https://datasciencebook.ca/setup.html), which are kept up to date.
+
 | Book chapter | View worksheet on GitHub | Launch worksheet on myBinder.org |
 |--------------|-----------|----|
 | [R and the tidyverse](https://datasciencebook.ca/intro.html) | [view worksheet](worksheet_intro/worksheet_intro.ipynb) | [![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/UBC-DSCI/data-science-a-first-intro-worksheets/HEAD?labpath=worksheet_intro%2Fworksheet_intro.ipynb)  |
